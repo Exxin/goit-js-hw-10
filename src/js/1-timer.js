@@ -1,5 +1,5 @@
 import flatpickr from "flatpickr";
-import iziToast from "izitoast";тзь 
+import iziToast from "izitoast";
 
 let userSelectedDate = null;
 
@@ -16,7 +16,7 @@ const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
-  minuteIncrement: 0.5,
+  minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
     if (!isValidDate(userSelectedDate)) {
