@@ -1,25 +1,124 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
 @import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+
+/* ============================================================= */
+p { 
+  padding-bottom: 50px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  width: 1440px;
+  height: 696px;
+  padding: 24px 156px;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: flex-start;
+}
+
+.timer {
+  display: flex;
+}
+
+.field {
+  margin-right: 10px;
+}
+
+.gallery {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.gallery-item {
+  /* flex: 1 0 calc(33.333% - 24px); */
+  overflow: hidden;
+  cursor: pointer;
+  width: 360px;
+  height: 200px;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-link {
+  display: block;
+  text-decoration: none;
+  width: 360px;
+  height: 200px;
+}
+
+.gallery-image {
+  /* width: 100%;
+    height: auto; */
+  width: 360px;
+  height: 200px;
+
+}
+
+.gallery-item:hover {
+  transform: scale(1.1);
+}
+
+/* =====================form========================== */
+.login-form {
+  width: 360px;
+}
+
+input {
+  padding: 8px 0 8px 16px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  /* width: 360px; */
+}
+
+input:hover {
+  border: 1px solid #000;
+  color: #2E2F42;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+button {
+  width: auto;
+  border: none;
+  border-radius: 8px;
+  background: #4E75FF;
+
+  color: #FFF;
+
   font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
   line-height: 24px;
-  font-weight: 400;
+  letter-spacing: 0.64px;
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  display: inline-flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  height: 40px;
+}
+
+form button {
+  width: 86px;
+}
+
+button:hover {
+  background: #6C8CFF;
 }
