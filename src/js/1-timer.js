@@ -1,7 +1,10 @@
 import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 let userSelectedDate = null;
+let timerInterval;
 
 function isValidDate(date) {
   return date > new Date();
@@ -9,7 +12,7 @@ function isValidDate(date) {
 
 function updateStartButtonState() {
   const startButton = document.getElementById("start-button");
-  startButton.disabled = !isValidDate(userSelectedDate);
+  startButton.disabled = !isValidDate(userSelectedDate) || timerInterval;
 }
 
 const options = {
@@ -61,19 +64,24 @@ function updateTimerDisplay(remainingTime) {
 document.getElementById('start-button').addEventListener('click', () => {
   const startButton = document.getElementById("start-button");
   startButton.disabled = true;
-  const intervalId = setInterval(() => {
-    const currentTime = new Date();
-    const difference = userSelectedDate - currentTime;
-    if (difference <= 0) {
-      clearInterval(intervalId);
-      updateTimerDisplay({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      iziToast.success({ message: "Countdown finished" });
-      startButton.disabled = false;
-    } else {
-      const remainingTime = convertMs(difference);
-      updateTimerDisplay(remainingTime);
-    }
-  }, 1000);
+  
+  if (!timerInterval) {
+    const endDate = userSelectedDate.getTime();
+    timerInterval = setInterval(() => {
+      const currentTime = new Date();
+      const difference = endDate - currentTime;
+      if (difference <= 0) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        updateTimerDisplay({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        iziToast.success({ message: "Countdown finished" });
+        updateStartButtonState();
+      } else {
+        const remainingTime = convertMs(difference);
+        updateTimerDisplay(remainingTime);
+      }
+    }, 1000);
+  }
 });
 
 window.addEventListener('DOMContentLoaded', () => {
